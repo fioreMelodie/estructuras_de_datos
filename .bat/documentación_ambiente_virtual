@@ -1,0 +1,81 @@
+🚀 Script de inicialización de proyecto Python con Jupyter
+
+Este proyecto incluye un archivo batch (.bat) que automatiza la creación de un entorno de trabajo en Python con soporte para Jupyter Notebooks y Visual Studio Code.
+
+📂 Estructura generada
+
+Al ejecutar el .bat se crea la siguiente estructura:
+
+📁 nombre_del_bat/
+ ├── 📁 src/
+ │    └── mis_funciones.py
+ ├── 📁 notebooks/
+ │    └── arrays.ipynb
+ ├── 📁 .venv/   (entorno virtual de Python)
+
+⚙️ Explicación del script paso a paso
+1. Ir a la carpeta del .bat
+cd /d %~dp0
+
+
+Navega a la carpeta donde está guardado el script.
+
+2. Crear carpeta con el nombre del .bat
+md %~n0
+cd %~n0
+
+
+%~n0 → nombre del archivo .bat sin extensión.
+
+Se crea una carpeta con ese nombre y se entra en ella.
+
+3. Crear carpetas de trabajo
+md src
+md notebooks
+
+
+src/ → código Python.
+
+notebooks/ → archivos Jupyter.
+
+4. Crear un archivo Python de ejemplo
+echo # Archivo de funciones > src\mis_funciones.py
+echo def saludar(nombre): >> src\mis_funciones.py
+echo     return f"Hola, {nombre}!" >> src\mis_funciones.py
+
+
+Genera mis_funciones.py con una función simple de prueba.
+
+5. Crear un notebook vacío
+echo { > notebooks\arrays.ipynb
+echo   "cells": [], >> notebooks\arrays.ipynb
+echo   "metadata": {}, >> notebooks\arrays.ipynb
+echo   "nbformat": 4, >> notebooks\arrays.ipynb
+echo   "nbformat_minor": 5 >> notebooks\arrays.ipynb
+echo } >> notebooks\arrays.ipynb
+
+
+Crea un arrays.ipynb válido para que Jupyter/VS Code lo reconozca.
+
+6. Crear y activar un entorno virtual
+python -m venv .venv
+call .venv\Scripts\activate
+
+
+Crea un entorno virtual .venv e inicia el entorno.
+
+7. Instalar dependencias
+python -m pip install --upgrade pip
+python -m pip install jupyter
+
+
+Actualiza pip e instala Jupyter Notebook en el entorno virtual.
+
+8. Abrir el proyecto en VS Code
+code "%cd%"
+code "%cd%\notebooks\arrays.ipynb"
+
+
+Abre la carpeta del proyecto en VS Code.
+
+Abre el notebook arrays.ipynb en otra pestaña.
